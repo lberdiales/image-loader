@@ -17,7 +17,7 @@ import java.io.InputStream
 
 class OnDemandResourceStreamFetcher(
     private val client: Call.Factory,
-    private val url: OnDemandResourceUrl
+    private val url: OnDemandResource
 ) : DataFetcher<InputStream>, Callback {
 
     private var onDemandResourceApiFetcher: OnDemandResourceApiFetcher? = null
@@ -35,9 +35,9 @@ class OnDemandResourceStreamFetcher(
         onDemandResourceApiFetcher?.loadData(object : DataFetcher.DataCallback<GlideUrl> {
             override fun onDataReady(data: GlideUrl?) {
                 val requestBuilder = Request.Builder().get().url(data!!.toStringUrl())
-                url.headers.forEach { (key, value) ->
-                    requestBuilder.addHeader(key, value)
-                }
+                // url.headers.forEach { (key, value) ->
+                //     requestBuilder.addHeader(key, value)
+                // }
                 val request = requestBuilder.build()
                 this@OnDemandResourceStreamFetcher.callback = callback
 

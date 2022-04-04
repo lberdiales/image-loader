@@ -1,6 +1,5 @@
 package com.example.imageloader.loaders
 
-import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader
 import com.bumptech.glide.load.Options
 import com.bumptech.glide.load.model.ModelLoader
 import com.bumptech.glide.load.model.ModelLoaderFactory
@@ -11,26 +10,26 @@ import java.io.InputStream
 
 class OnDemandResourceModelLoader(
     private val client: Call.Factory
-) : ModelLoader<OnDemandResourceUrl, InputStream> {
+) : ModelLoader<OnDemandResource, InputStream> {
 
     override fun buildLoadData(
-        model: OnDemandResourceUrl,
+        model: OnDemandResource,
         width: Int,
         height: Int,
         options: Options
-    ): ModelLoader.LoadData<InputStream>? {
+    ): ModelLoader.LoadData<InputStream> {
         return ModelLoader.LoadData(model, OnDemandResourceStreamFetcher(client, model))
     }
 
-    override fun handles(model: OnDemandResourceUrl): Boolean {
-        return model is OnDemandResourceUrl
+    override fun handles(model: OnDemandResource): Boolean {
+        return true
     }
 
     class Factory(
         private val client: OkHttpClient
-    ) : ModelLoaderFactory<OnDemandResourceUrl, InputStream> {
+    ) : ModelLoaderFactory<OnDemandResource, InputStream> {
 
-        override fun build(multiFactory: MultiModelLoaderFactory): ModelLoader<OnDemandResourceUrl, InputStream> {
+        override fun build(multiFactory: MultiModelLoaderFactory): ModelLoader<OnDemandResource, InputStream> {
             return OnDemandResourceModelLoader(client)
         }
 

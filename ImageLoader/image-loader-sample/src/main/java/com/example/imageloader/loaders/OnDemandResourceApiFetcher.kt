@@ -14,7 +14,7 @@ import java.io.IOException
 
 class OnDemandResourceApiFetcher(
     private val client: Call.Factory,
-    private val url: OnDemandResourceUrl
+    private val url: OnDemandResource
 ) : Callback {
 
     private var responseBody: ResponseBody? = null
@@ -24,10 +24,10 @@ class OnDemandResourceApiFetcher(
     private var call: Call? = null
 
     fun loadData(callback: DataFetcher.DataCallback<in GlideUrl>) {
-        val requestBuilder = Request.Builder().get().url(url.toStringUrl())
-        url.headers.forEach { (key, value) ->
-            requestBuilder.addHeader(key, value)
-        }
+        val requestBuilder = Request.Builder().get().url(url.stringUrl)
+        // url.headers.forEach { (key, value) ->
+        //     requestBuilder.addHeader(key, value)
+        // }
         val request = requestBuilder.build()
         this@OnDemandResourceApiFetcher.callback = callback
 

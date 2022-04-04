@@ -4,21 +4,23 @@ import android.content.Context
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Registry
 import com.bumptech.glide.annotation.GlideModule
-import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader
-import com.bumptech.glide.load.model.GlideUrl
-import com.bumptech.glide.load.model.ModelLoader
-import com.bumptech.glide.load.model.ModelLoaderFactory
-import com.bumptech.glide.load.model.MultiModelLoaderFactory
 import com.bumptech.glide.module.AppGlideModule
 import com.example.imageloader.loaders.OnDemandResourceModelLoader
-import com.example.imageloader.loaders.OnDemandResourceUrl
+import com.example.imageloader.loaders.OnDemandResource
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import java.io.InputStream
 
 @GlideModule
 class OnDemandResourceAppGlideModule : AppGlideModule() {
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
-        registry.prepend(OnDemandResourceUrl::class.java, InputStream::class.java, OnDemandResourceModelLoader.Factory(OkHttpClient()))
+        val okHttpClient = OkHttpClient.Builder()
+            .addInterceptor()
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+            .build()
+        registry.prepend(OnDemandResource::class.java, InputStream::class.java, OnDemandResourceModelLoader.Factory(okHttpClient))
         // registry.replace(OnDemandResourceUrl::class.java, InputStream::class.java, OnDemandResourceModelLoader.Factory(OkHttpClient()))
         // registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpUrlLoader.Factory(OkHttpClient()))
     }

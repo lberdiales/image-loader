@@ -8,7 +8,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.example.imageloader.loaders.OnDemandResourceUrl
+import com.example.imageloader.loaders.OnDemandResource
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerDrawable
 
@@ -42,9 +42,9 @@ class ImageLoaderImpl : ImageLoader {
             .into(imageView)
     }
 
-    override fun loadOnDemandImage(imageView: ImageView, onDemandResourceUrl: OnDemandResourceUrl) {
+    override fun loadOnDemandImage(imageView: ImageView, onDemandResource: OnDemandResource) {
         Glide.with(imageView.context)
-            .load(onDemandResourceUrl)
+            .load(onDemandResource)
             .placeholder(ShimmerUtils.shimmerDrawable())
             .into(imageView)
     }
