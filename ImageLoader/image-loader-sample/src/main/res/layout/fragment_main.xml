@@ -4,28 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
-
-    <TextView
-        android:id="@+id/textview_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_first_fragment"
-        app:layout_constraintBottom_toTopOf="@id/button_first"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".MainFragment">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:background="#33000000"
-        app:layout_constraintBottom_toTopOf="@id/button_first"
+        app:layout_constraintBottom_toTopOf="@id/imageView_lottie"
         app:layout_constraintDimensionRatio="W,1:1"
         app:layout_constraintEnd_toStartOf="@id/imageView_on_demand"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_first"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:ignore="ContentDescription" />
 
     <ImageView
@@ -40,14 +31,27 @@
         app:layout_constraintTop_toTopOf="@id/imageView"
         tools:ignore="ContentDescription" />
 
-    <Button
-        android:id="@+id/button_first"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/imageView_lottie"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        android:background="#33000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="W,1:1"
+        app:layout_constraintEnd_toEndOf="@id/imageView_on_demand"
+        app:layout_constraintStart_toStartOf="@id/imageView"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/imageButton_toggle_play_stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_first" />
+        app:layout_constraintEnd_toEndOf="@id/imageView_lottie"
+        app:layout_constraintStart_toStartOf="@id/imageView_lottie"
+        app:layout_constraintTop_toBottomOf="@id/imageView_lottie"
+        app:srcCompat="@drawable/ic_play_24dp"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

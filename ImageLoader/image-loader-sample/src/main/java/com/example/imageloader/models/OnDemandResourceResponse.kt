@@ -8,8 +8,8 @@ data class OnDemandResourceResponse(
 ) {
     companion object {
         fun getSourceUrl(json: String): String {
-            // return Gson().fromJson(json, OnDemandResourceResponse::class.java).url
-            return "https://www.androidhire.com/wp-content/uploads/2020/03/create-library-for-android.png"
+            return Gson().fromJson(json, OnDemandResourceResponse::class.java).url
+            //return "https://www.androidhire.com/wp-content/uploads/2020/03/create-library-for-android.png"
         }
     }
 }
