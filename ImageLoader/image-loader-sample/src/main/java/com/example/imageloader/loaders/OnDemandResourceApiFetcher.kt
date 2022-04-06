@@ -6,16 +6,17 @@ import com.bumptech.glide.load.data.DataFetcher
 import com.bumptech.glide.load.model.GlideUrl
 import com.example.imageloader.models.OnDemandResource
 import com.example.imageloader.models.OnDemandResourceResponse
+import com.example.imageloader.providers.OnDemandResourceRequestBuilder
 import okhttp3.Call
 import okhttp3.Callback
-import okhttp3.Request
 import okhttp3.Response
 import okhttp3.ResponseBody
 import java.io.IOException
 
 class OnDemandResourceApiFetcher(
+    private val onDemandResource: OnDemandResource,
     private val client: Call.Factory,
-    private val onDemandResource: OnDemandResource
+    private val onDemandResourceRequestBuilder: OnDemandResourceRequestBuilder
 ) : Callback {
 
     private var responseBody: ResponseBody? = null
@@ -25,11 +26,7 @@ class OnDemandResourceApiFetcher(
     private var call: Call? = null
 
     fun loadData(callback: DataFetcher.DataCallback<in GlideUrl>) {
-        val requestBuilder = Request.Builder().get().url(onDemandResource.url)
-        // url.headers.forEach { (key, value) ->
-        //     requestBuilder.addHeader(key, value)
-        // }
-        val request = requestBuilder.build()
+        val request = onDemandResourceRequestBuilder.buildRequest(onDemandResource)
         this@OnDemandResourceApiFetcher.callback = callback
 
         call = client.newCall(request)

@@ -5,12 +5,14 @@ import com.bumptech.glide.load.model.ModelLoader
 import com.bumptech.glide.load.model.ModelLoaderFactory
 import com.bumptech.glide.load.model.MultiModelLoaderFactory
 import com.example.imageloader.models.OnDemandResource
+import com.example.imageloader.providers.OnDemandResourceRequestBuilder
 import okhttp3.Call
 import okhttp3.OkHttpClient
 import java.io.InputStream
 
 class OnDemandResourceModelLoader(
-    private val client: Call.Factory
+    private val client: Call.Factory,
+    private val onDemandResourceRequestBuilder: OnDemandResourceRequestBuilder
 ) : ModelLoader<OnDemandResource, InputStream> {
 
     override fun buildLoadData(
@@ -19,7 +21,14 @@ class OnDemandResourceModelLoader(
         height: Int,
         options: Options
     ): ModelLoader.LoadData<InputStream> {
-        return ModelLoader.LoadData(model, OnDemandResourceStreamFetcher(client, model))
+        return ModelLoader.LoadData(
+            model,
+            OnDemandResourceStreamFetcher(
+                onDemandResource = model,
+                client = client,
+                onDemandResourceRequestBuilder = onDemandResourceRequestBuilder
+            )
+        )
     }
 
     override fun handles(model: OnDemandResource): Boolean {
@@ -27,11 +36,12 @@ class OnDemandResourceModelLoader(
     }
 
     class Factory(
-        private val client: OkHttpClient
+        private val client: OkHttpClient,
+        private val onDemandResourceRequestBuilder: OnDemandResourceRequestBuilder
     ) : ModelLoaderFactory<OnDemandResource, InputStream> {
 
         override fun build(multiFactory: MultiModelLoaderFactory): ModelLoader<OnDemandResource, InputStream> {
-            return OnDemandResourceModelLoader(client)
+            return OnDemandResourceModelLoader(client, onDemandResourceRequestBuilder)
         }
 
         override fun teardown() {
