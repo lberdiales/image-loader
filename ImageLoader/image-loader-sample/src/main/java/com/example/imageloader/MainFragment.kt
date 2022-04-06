@@ -1,13 +1,16 @@
 package com.example.imageloader
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.airbnb.lottie.LottieDrawable.INFINITE
 import com.example.imageloader.databinding.FragmentMainBinding
-import com.example.imageloader.loaders.OnDemandResource
+import com.example.imageloader.models.OnDemandResource
+import com.example.imageloader.models.RemoteResource
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -33,30 +36,58 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        imageLoader.loadImage(
-            imageView = binding.imageView,
-            url = "https://i0.wp.com/unaaldia.hispasec.com/wp-content/uploads/2017/03/3c744-android-logo.png"
-        )
-
-        imageLoader.loadOnDemandImage(
-            imageView = binding.imageViewOnDemand,
-            onDemandResource = OnDemandResource(
-                resourceName = "RESOURCE_NAME_6",
-                useCountryCode = false,
-                useLanguageCode = false
-            ).apply {
-                //stringUrl = "https://lh3.googleusercontent.com/OOjYcooPxIC4PHWxKGg5tfVm5qbJB4m2IMvhmXCOMl9Ps4T6dvmcA66UscrkML0lU6WR0IfswAL9QNpEL63mpLvrtDMiLnOMYCT8rhkC-eIXjhDNk6wGlx-nMJeZzyrvairQOD48KnxhY9vc-tahh7rgKoJeR1mwfoJIVfBNRwlNTSrLkrDZFAU15fvGofmKCrrvlUgUka6tpD80A1-Dm3KRE9knS0m1UHssQ6-KOFdGSndZ70ayGV5pY-n-zDsMYAzDNQMwvb2AhUddiO6VOViXztUqiYuVX5eqCnL7z-bndTcDAqfyohvw8txH5bvc1VR0XcQPjGzJ6EVkdZso2T4b5NoFufzlIP3DPjoFE37VKEGmnI-QMhz9m_IwuJ2U0WXBP9Q4pJkVPqwbIZzm-g338ZETis17D3r52v4hDsq5mN7vzV5KcRHs5l1uivdS5Wj5SQ0t96xmndOEOUISyIxGWeeDGIVSImnK6GuLEfrO4Vsi9gc4Qi8KU5aDBZ0rsbTM-hgNObqBTs-AebwR9gspWCqW7Cigfnezbf1bHAyvPjoLaJ_2IxjoF9KZxjPieYRuXMoDpdhvT5_0cfEsUQF8HjR1qBPku_asce3UtQGvIhMikw=s0"
-                //stringUrl = "https://square.github.io/images/logo.png"
-                //stringUrl = "https://services.grability.rappi.com/api/ms/core-lottie/name/RPPAY-PAY-RDA-VALIDATING-RISK"
-                stringUrl = "https://services.grability.rappi.com/api/ms/core-lottie/name/RPPAY-DECLINED-BY-RISK"
+        imageLoader.loadResource(
+            resource = RemoteResource(url = "https://i0.wp.com/unaaldia.hispasec.com/wp-content/uploads/2017/03/3c744-android-logo.png"),
+            targetView = binding.imageViewRemoteResourceImage,
+            onResourceLoaded = {
+                Log.d("LMB", "imageLoader.loadResource(targetView = binding.imageViewRemoteResourceImage):: onResourceLoaded")
+            },
+            onResourceLoadFailed = { exception ->
+                Log.d("LMB", "imageLoader.loadResource(targetView = binding.imageViewRemoteResourceImage):: onResourceLoadFailed($exception)")
             }
         )
 
-        imageLoader.loadLottie(
-            imageView = binding.imageViewLottie,
-            lottieUrl = "https://assets5.lottiefiles.com/datafiles/zc3XRzudyWE36ZBJr7PIkkqq0PFIrIBgp4ojqShI/newAnimation.json"
+        imageLoader.loadResource(
+            resource = OnDemandResource(
+                resourceName = "RPPAY-DECLINED-BY-RISK",
+                useCountryCode = false,
+                useLanguageCode = false
+            ),
+            targetView = binding.imageViewOnDemandResourceImage,
+            onResourceLoaded = {
+                Log.d("LMB", "imageLoader.loadResource(targetView = binding.imageViewOnDemandResourceImage):: onResourceLoaded")
+            },
+            onResourceLoadFailed = { exception ->
+                Log.d("LMB", "imageLoader.loadResource(targetView = binding.imageViewOnDemandResourceImage):: onResourceLoadFailed($exception)")
+            }
         )
-        // binding.imageViewLottie.setAnimationFromUrl("https://assets5.lottiefiles.com/datafiles/zc3XRzudyWE36ZBJr7PIkkqq0PFIrIBgp4ojqShI/newAnimation.json")
+
+        imageLoader.loadResource(
+            resource = RemoteResource(url = "https://assets5.lottiefiles.com/datafiles/zc3XRzudyWE36ZBJr7PIkkqq0PFIrIBgp4ojqShI/newAnimation.json"),
+            targetView = binding.lottieAnimationViewRemoteResourceLottie,
+            onResourceLoaded = {
+                Log.d("LMB", "imageLoader.loadResource(targetView = binding.lottieAnimationViewRemoteResourceLottie):: onResourceLoaded")
+            },
+            onResourceLoadFailed = { exception ->
+                Log.d("LMB", "imageLoader.loadResource(targetView = binding.lottieAnimationViewRemoteResourceLottie):: onResourceLoadFailed($exception)")
+            }
+        )
+
+        imageLoader.loadResource(
+            resource = OnDemandResource(
+                resourceName = "RPPAY-PAY-RDA-VALIDATING-RISK",
+                useCountryCode = false,
+                useLanguageCode = false
+            ),
+            targetView = binding.lottieAnimationViewOnDemandResourceLottie,
+            onResourceLoaded = {
+                Log.d("LMB", "imageLoader.loadResource(targetView = binding.lottieAnimationViewOnDemandResourceLottie):: onResourceLoaded")
+            },
+            onResourceLoadFailed = { exception ->
+                Log.d("LMB", "imageLoader.loadResource(targetView = binding.lottieAnimationViewOnDemandResourceLottie):: onResourceLoadFailed($exception)")
+            }
+        )
+
         configureImageButtonTogglePlayStop(PlayingState.PLAYING)
     }
 
@@ -65,14 +96,16 @@ class MainFragment : Fragment() {
             PlayingState.PLAYING -> {
                 binding.imageButtonTogglePlayStop.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_pause_24dp))
                 binding.imageButtonTogglePlayStop.setOnClickListener {
-                    binding.imageViewLottie.pauseAnimation()
+                    binding.lottieAnimationViewRemoteResourceLottie.pauseAnimation()
+                    binding.lottieAnimationViewOnDemandResourceLottie.pauseAnimation()
                     configureImageButtonTogglePlayStop(playingState = PlayingState.STOPPED)
                 }
             }
             PlayingState.STOPPED -> {
                 binding.imageButtonTogglePlayStop.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_play_24dp))
                 binding.imageButtonTogglePlayStop.setOnClickListener {
-                    binding.imageViewLottie.playAnimation()
+                    binding.lottieAnimationViewRemoteResourceLottie.resumeAnimation()
+                    binding.lottieAnimationViewOnDemandResourceLottie.resumeAnimation()
                     configureImageButtonTogglePlayStop(playingState = PlayingState.PLAYING)
                 }
             }

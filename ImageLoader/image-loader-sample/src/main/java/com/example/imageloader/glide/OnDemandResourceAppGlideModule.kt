@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.Registry
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule
-import com.example.imageloader.loaders.OnDemandResource
+import com.example.imageloader.models.OnDemandResource
 import com.example.imageloader.loaders.OnDemandResourceModelLoader
 import com.example.imageloader.lottie.LottieDecoder
 import com.example.imageloader.lottie.LottieDrawableTranscoder

@@ -4,6 +4,7 @@ import com.bumptech.glide.load.Options
 import com.bumptech.glide.load.model.ModelLoader
 import com.bumptech.glide.load.model.ModelLoaderFactory
 import com.bumptech.glide.load.model.MultiModelLoaderFactory
+import com.example.imageloader.models.OnDemandResource
 import okhttp3.Call
 import okhttp3.OkHttpClient
 import java.io.InputStream

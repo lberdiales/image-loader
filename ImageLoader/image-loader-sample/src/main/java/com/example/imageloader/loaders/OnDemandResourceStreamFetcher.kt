@@ -7,6 +7,7 @@ import com.bumptech.glide.load.HttpException
 import com.bumptech.glide.load.data.DataFetcher
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.util.ContentLengthInputStream
+import com.example.imageloader.models.OnDemandResource
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Request
@@ -17,7 +18,7 @@ import java.io.InputStream
 
 class OnDemandResourceStreamFetcher(
     private val client: Call.Factory,
-    private val url: OnDemandResource
+    private val onDemandResource: OnDemandResource
 ) : DataFetcher<InputStream>, Callback {
 
     private var onDemandResourceApiFetcher: OnDemandResourceApiFetcher? = null
@@ -31,13 +32,10 @@ class OnDemandResourceStreamFetcher(
     private var call: Call? = null
 
     override fun loadData(priority: Priority, callback: DataFetcher.DataCallback<in InputStream>) {
-        onDemandResourceApiFetcher = OnDemandResourceApiFetcher(client, url)
+        onDemandResourceApiFetcher = OnDemandResourceApiFetcher(client, onDemandResource)
         onDemandResourceApiFetcher?.loadData(object : DataFetcher.DataCallback<GlideUrl> {
             override fun onDataReady(data: GlideUrl?) {
                 val requestBuilder = Request.Builder().get().url(data!!.toStringUrl())
-                // url.headers.forEach { (key, value) ->
-                //     requestBuilder.addHeader(key, value)
-                // }
                 val request = requestBuilder.build()
                 this@OnDemandResourceStreamFetcher.callback = callback
 
