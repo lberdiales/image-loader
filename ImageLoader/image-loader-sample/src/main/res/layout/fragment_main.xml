@@ -6,23 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".MainFragment">
 
+    <TextView
+        android:id="@+id/textView_image_views"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#33000000"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="ImageView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
     <ImageView
         android:id="@+id/imageView_remote_resource_image"
         android:layout_width="0dp"
-        android:layout_height="160dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="16dp"
         android:background="#33000000"
-        app:layout_constraintBottom_toTopOf="@id/lottieAnimationView_remote_resource_lottie"
         app:layout_constraintDimensionRatio="W,1:1"
         app:layout_constraintEnd_toStartOf="@id/imageView_on_demand_resource_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toBottomOf="@id/textView_image_views"
         tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/imageView_on_demand_resource_image"
         android:layout_width="0dp"
-        android:layout_height="160dp"
+        android:layout_height="120dp"
         android:background="#33000000"
         app:layout_constraintBottom_toBottomOf="@id/imageView_remote_resource_image"
         app:layout_constraintDimensionRatio="W,1:1"
@@ -31,17 +46,32 @@
         app:layout_constraintTop_toTopOf="@id/imageView_remote_resource_image"
         tools:ignore="ContentDescription" />
 
+    <TextView
+        android:id="@+id/textView_lottie_animation_views"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="#33000000"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="LottieAnimationView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView_remote_resource_image"
+        tools:ignore="HardcodedText" />
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieAnimationView_remote_resource_lottie"
         android:layout_width="0dp"
         android:layout_height="160dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="#33000000"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="W,1:1"
-        app:layout_constraintEnd_toEndOf="@id/imageView_remote_resource_image"
-        app:layout_constraintStart_toStartOf="@id/imageView_remote_resource_image"
-        app:layout_constraintTop_toBottomOf="@id/imageView_remote_resource_image"
+        app:layout_constraintEnd_toStartOf="@id/lottieAnimationView_on_demand_resource_lottie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_lottie_animation_views"
         app:lottie_autoPlay="true"
         app:lottie_repeatCount="-1"
         tools:ignore="ContentDescription" />
@@ -50,12 +80,12 @@
         android:id="@+id/lottieAnimationView_on_demand_resource_lottie"
         android:layout_width="0dp"
         android:layout_height="160dp"
-        android:layout_marginTop="8dp"
         android:background="#33000000"
+        app:layout_constraintBottom_toBottomOf="@id/lottieAnimationView_remote_resource_lottie"
         app:layout_constraintDimensionRatio="W,1:1"
-        app:layout_constraintEnd_toEndOf="@id/imageView_on_demand_resource_image"
-        app:layout_constraintStart_toStartOf="@id/imageView_on_demand_resource_image"
-        app:layout_constraintTop_toBottomOf="@id/imageView_on_demand_resource_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/lottieAnimationView_remote_resource_lottie"
+        app:layout_constraintTop_toTopOf="@id/lottieAnimationView_remote_resource_lottie"
         app:lottie_autoPlay="true"
         app:lottie_repeatCount="-1"
         tools:ignore="ContentDescription" />

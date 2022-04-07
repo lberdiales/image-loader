@@ -3,6 +3,7 @@ package com.example.imageloader
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import com.airbnb.lottie.LottieAnimationView
+import com.airbnb.lottie.LottieComposition
 import com.airbnb.lottie.LottieDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -21,7 +22,7 @@ class ImageLoaderImpl : ImageLoader {
         targetView: ImageView,
         placeholderDrawable: Drawable?,
         errorDrawable: Drawable?,
-        onResourceLoaded: (() -> Unit)?,
+        onResourceLoaded: ((Drawable?) -> Unit)?,
         onResourceLoadFailed: ((Exception?) -> Unit)?
     ) {
         Glide.with(targetView.context)
@@ -36,7 +37,7 @@ class ImageLoaderImpl : ImageLoader {
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    onResourceLoaded?.invoke()
+                    onResourceLoaded?.invoke(resource)
                     return false
                 }
 
@@ -58,7 +59,7 @@ class ImageLoaderImpl : ImageLoader {
         targetView: LottieAnimationView,
         placeholderDrawable: Drawable?,
         errorDrawable: Drawable?,
-        onResourceLoaded: (() -> Unit)?,
+        onResourceLoaded: ((LottieComposition?) -> Unit)?,
         onResourceLoadFailed: ((Exception?) -> Unit)?
     ) {
         Glide.with(targetView.context)
@@ -74,7 +75,7 @@ class ImageLoaderImpl : ImageLoader {
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    onResourceLoaded?.invoke()
+                    onResourceLoaded?.invoke(resource?.composition)
                     return false
                 }
 
@@ -111,7 +112,7 @@ class ImageLoaderImpl : ImageLoader {
         targetView: ImageView,
         placeholderDrawable: Drawable?,
         errorDrawable: Drawable?,
-        onResourceLoaded: (() -> Unit)?,
+        onResourceLoaded: ((Drawable?) -> Unit)?,
         onResourceLoadFailed: ((Exception?) -> Unit)?
     ) {
         Glide.with(targetView.context)
@@ -126,7 +127,7 @@ class ImageLoaderImpl : ImageLoader {
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    onResourceLoaded?.invoke()
+                    onResourceLoaded?.invoke(resource)
                     return false
                 }
 
@@ -148,7 +149,7 @@ class ImageLoaderImpl : ImageLoader {
         targetView: LottieAnimationView,
         placeholderDrawable: Drawable?,
         errorDrawable: Drawable?,
-        onResourceLoaded: (() -> Unit)?,
+        onResourceLoaded: ((LottieComposition?) -> Unit)?,
         onResourceLoadFailed: ((Exception?) -> Unit)?
     ) {
         Glide.with(targetView.context)
@@ -164,7 +165,7 @@ class ImageLoaderImpl : ImageLoader {
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    onResourceLoaded?.invoke()
+                    onResourceLoaded?.invoke(resource?.composition)
                     return false
                 }
 

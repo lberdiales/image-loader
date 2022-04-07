@@ -1,10 +1,11 @@
 package com.example.imageloader.providers
 
+import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.model.LazyHeaders
 import com.example.imageloader.models.OnDemandRemoteResource
-import okhttp3.Request
 
 interface OnDemandRemoteResourceRequestBuilder {
-    fun buildRequest(onDemandRemoteResource: OnDemandRemoteResource): Request
+    fun buildRequest(onDemandRemoteResource: OnDemandRemoteResource): GlideUrl
 }
 
 class OnDemandRemoteResourceRequestBuilderImpl(
@@ -12,12 +13,14 @@ class OnDemandRemoteResourceRequestBuilderImpl(
     private val languageCodeProvider: LanguageCodeProvider
 ) : OnDemandRemoteResourceRequestBuilder {
 
-    override fun buildRequest(onDemandRemoteResource: OnDemandRemoteResource): Request {
-        return Request.Builder()
-            .apply { addHeader(COUNTRY_HEADER, countryCodeProvider.getCountryCode().takeIf { onDemandRemoteResource.useCountryCode } ?: "ALL") }
-            .apply { addHeader(LANGUAGE_HEADER, languageCodeProvider.getLanguageCode().takeIf { onDemandRemoteResource.useLanguageCode } ?: "ALL")}
-            .url(SERVICE.format(onDemandRemoteResource.resourceName))
-            .build()
+    override fun buildRequest(onDemandRemoteResource: OnDemandRemoteResource): GlideUrl {
+        return GlideUrl(
+            SERVICE.format(onDemandRemoteResource.resourceName),
+            LazyHeaders.Builder()
+                .addHeader(COUNTRY_HEADER, countryCodeProvider.getCountryCode().takeIf { onDemandRemoteResource.useCountryCode } ?: "ALL")
+                .addHeader(LANGUAGE_HEADER, languageCodeProvider.getLanguageCode().takeIf { onDemandRemoteResource.useLanguageCode } ?: "ALL")
+                .build()
+        )
     }
 
     companion object {

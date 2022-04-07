@@ -1,85 +1,54 @@
 package com.example.imageloader.loaders
 
-import android.util.Log
 import com.bumptech.glide.Priority
+import com.bumptech.glide.integration.okhttp3.OkHttpStreamFetcher
 import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.HttpException
 import com.bumptech.glide.load.data.DataFetcher
 import com.bumptech.glide.load.model.GlideUrl
-import com.bumptech.glide.util.ContentLengthInputStream
 import com.example.imageloader.models.OnDemandRemoteResource
+import com.example.imageloader.models.api.OnDemandResourceResponse
 import com.example.imageloader.providers.OnDemandRemoteResourceRequestBuilder
 import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.Request
-import okhttp3.Response
-import okhttp3.ResponseBody
-import java.io.IOException
 import java.io.InputStream
 
 class OnDemandRemoteResourceStreamFetcher(
     private val onDemandRemoteResource: OnDemandRemoteResource,
     private val client: Call.Factory,
     private val onDemandRemoteResourceRequestBuilder: OnDemandRemoteResourceRequestBuilder
-) : DataFetcher<InputStream>, Callback {
+) : DataFetcher<InputStream> {
 
-    private var onDemandRemoteResourceApiFetcher: OnDemandRemoteResourceApiFetcher? = null
-
-    private var responseBody: ResponseBody? = null
-    private var callback: DataFetcher.DataCallback<in InputStream>? = null
-
-    private var stream: InputStream? = null
-
-    @Volatile
-    private var call: Call? = null
+    private var apiFetcher1: OkHttpStreamFetcher? = null
+    private var apiFetcher2: OkHttpStreamFetcher? = null
 
     override fun loadData(priority: Priority, callback: DataFetcher.DataCallback<in InputStream>) {
-        onDemandRemoteResourceApiFetcher = OnDemandRemoteResourceApiFetcher(onDemandRemoteResource, client, onDemandRemoteResourceRequestBuilder)
-        onDemandRemoteResourceApiFetcher?.loadData(object : DataFetcher.DataCallback<GlideUrl> {
-            override fun onDataReady(data: GlideUrl?) {
-                val requestBuilder = Request.Builder().get().url(data!!.toStringUrl())
-                val request = requestBuilder.build()
-                this@OnDemandRemoteResourceStreamFetcher.callback = callback
-
-                call = client.newCall(request)
-                call?.enqueue(this@OnDemandRemoteResourceStreamFetcher)
+        // FIXME Hay que manejar el caso donde apiFetcher1 no pueda crearse por X razón
+        apiFetcher1 = OkHttpStreamFetcher(client, onDemandRemoteResourceRequestBuilder.buildRequest(onDemandRemoteResource))
+        apiFetcher1?.loadData(priority, object : DataFetcher.DataCallback<InputStream> {
+            override fun onDataReady(data: InputStream?) {
+                // FIXME Hay que manejar el caso donde no se pueda decodear data en la respuesta esperada
+                val response = OnDemandResourceResponse.getSourceUrl(String(data!!.readBytes()))
+                // FIXME Hay que manejar el caso donde apiFetcher2 no pueda crearse por X razón
+                apiFetcher2 = OkHttpStreamFetcher(client, GlideUrl(response))
+                apiFetcher2?.loadData(priority, callback)
             }
 
-            override fun onLoadFailed(e: Exception) {
+            override fun onLoadFailed(e: java.lang.Exception) {
                 callback.onLoadFailed(e)
             }
         })
     }
 
-    override fun onResponse(call: Call, response: Response) {
-        responseBody = response.body()
-        if (response.isSuccessful) {
-            val contentLength = responseBody!!.contentLength()
-            stream = ContentLengthInputStream.obtain(responseBody!!.byteStream(), contentLength)
-            callback?.onDataReady(stream)
-        } else callback?.onLoadFailed(HttpException(response.message(), response.code()))
-    }
-
-    override fun onFailure(call: Call, e: IOException) {
-        Log.e("OnDemandResourceStreamFetcher", "onFailure(call:$call, e:$e)")
-        callback?.onLoadFailed(e)
-    }
-
     override fun cleanup() {
-        onDemandRemoteResourceApiFetcher?.cleanup()
-        stream?.close()
-        stream = null
+        apiFetcher1?.cleanup()
+        apiFetcher1 = null
 
-        responseBody?.close()
-        responseBody = null
-
-        callback = null
+        apiFetcher2?.cleanup()
+        apiFetcher2 = null
     }
 
     override fun cancel() {
-        onDemandRemoteResourceApiFetcher?.cancel()
-
-        call?.cancel()
+        apiFetcher1?.cancel()
+        apiFetcher2?.cancel()
     }
 
     override fun getDataClass(): Class<InputStream> {

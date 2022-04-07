@@ -1,4 +1,4 @@
-package com.example.imageloader.models
+package com.example.imageloader.models.api
 
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
