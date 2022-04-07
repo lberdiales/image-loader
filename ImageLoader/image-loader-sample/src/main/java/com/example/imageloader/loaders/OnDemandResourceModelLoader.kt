@@ -4,19 +4,19 @@ import com.bumptech.glide.load.Options
 import com.bumptech.glide.load.model.ModelLoader
 import com.bumptech.glide.load.model.ModelLoaderFactory
 import com.bumptech.glide.load.model.MultiModelLoaderFactory
-import com.example.imageloader.models.OnDemandResource
-import com.example.imageloader.providers.OnDemandResourceRequestBuilder
+import com.example.imageloader.models.OnDemandRemoteResource
+import com.example.imageloader.providers.OnDemandRemoteResourceRequestBuilder
 import okhttp3.Call
 import okhttp3.OkHttpClient
 import java.io.InputStream
 
 class OnDemandResourceModelLoader(
     private val client: Call.Factory,
-    private val onDemandResourceRequestBuilder: OnDemandResourceRequestBuilder
-) : ModelLoader<OnDemandResource, InputStream> {
+    private val onDemandRemoteResourceRequestBuilder: OnDemandRemoteResourceRequestBuilder
+) : ModelLoader<OnDemandRemoteResource, InputStream> {
 
     override fun buildLoadData(
-        model: OnDemandResource,
+        model: OnDemandRemoteResource,
         width: Int,
         height: Int,
         options: Options
@@ -24,24 +24,24 @@ class OnDemandResourceModelLoader(
         return ModelLoader.LoadData(
             model,
             OnDemandResourceStreamFetcher(
-                onDemandResource = model,
+                onDemandRemoteResource = model,
                 client = client,
-                onDemandResourceRequestBuilder = onDemandResourceRequestBuilder
+                onDemandRemoteResourceRequestBuilder = onDemandRemoteResourceRequestBuilder
             )
         )
     }
 
-    override fun handles(model: OnDemandResource): Boolean {
+    override fun handles(model: OnDemandRemoteResource): Boolean {
         return true
     }
 
     class Factory(
         private val client: OkHttpClient,
-        private val onDemandResourceRequestBuilder: OnDemandResourceRequestBuilder
-    ) : ModelLoaderFactory<OnDemandResource, InputStream> {
+        private val onDemandRemoteResourceRequestBuilder: OnDemandRemoteResourceRequestBuilder
+    ) : ModelLoaderFactory<OnDemandRemoteResource, InputStream> {
 
-        override fun build(multiFactory: MultiModelLoaderFactory): ModelLoader<OnDemandResource, InputStream> {
-            return OnDemandResourceModelLoader(client, onDemandResourceRequestBuilder)
+        override fun build(multiFactory: MultiModelLoaderFactory): ModelLoader<OnDemandRemoteResource, InputStream> {
+            return OnDemandResourceModelLoader(client, onDemandRemoteResourceRequestBuilder)
         }
 
         override fun teardown() {

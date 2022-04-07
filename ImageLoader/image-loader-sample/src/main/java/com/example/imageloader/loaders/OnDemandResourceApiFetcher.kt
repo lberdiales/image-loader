@@ -4,9 +4,9 @@ import android.util.Log
 import com.bumptech.glide.load.HttpException
 import com.bumptech.glide.load.data.DataFetcher
 import com.bumptech.glide.load.model.GlideUrl
-import com.example.imageloader.models.OnDemandResource
+import com.example.imageloader.models.OnDemandRemoteResource
 import com.example.imageloader.models.OnDemandResourceResponse
-import com.example.imageloader.providers.OnDemandResourceRequestBuilder
+import com.example.imageloader.providers.OnDemandRemoteResourceRequestBuilder
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
@@ -14,9 +14,9 @@ import okhttp3.ResponseBody
 import java.io.IOException
 
 class OnDemandResourceApiFetcher(
-    private val onDemandResource: OnDemandResource,
+    private val onDemandRemoteResource: OnDemandRemoteResource,
     private val client: Call.Factory,
-    private val onDemandResourceRequestBuilder: OnDemandResourceRequestBuilder
+    private val onDemandRemoteResourceRequestBuilder: OnDemandRemoteResourceRequestBuilder
 ) : Callback {
 
     private var responseBody: ResponseBody? = null
@@ -26,7 +26,7 @@ class OnDemandResourceApiFetcher(
     private var call: Call? = null
 
     fun loadData(callback: DataFetcher.DataCallback<in GlideUrl>) {
-        val request = onDemandResourceRequestBuilder.buildRequest(onDemandResource)
+        val request = onDemandRemoteResourceRequestBuilder.buildRequest(onDemandRemoteResource)
         this@OnDemandResourceApiFetcher.callback = callback
 
         call = client.newCall(request)

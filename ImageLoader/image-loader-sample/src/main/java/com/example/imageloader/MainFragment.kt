@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.imageloader.databinding.FragmentMainBinding
-import com.example.imageloader.models.OnDemandResource
+import com.example.imageloader.models.OnDemandRemoteResource
 import com.example.imageloader.models.RemoteResource
 
 class MainFragment : Fragment() {
@@ -29,7 +29,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        imageLoader.loadResource(
+        imageLoader.loadImage(
             resource = RemoteResource(url = "https://i0.wp.com/unaaldia.hispasec.com/wp-content/uploads/2017/03/3c744-android-logo.png"),
             targetView = binding.imageViewRemoteResourceImage,
             onResourceLoaded = {
@@ -40,8 +40,8 @@ class MainFragment : Fragment() {
             }
         )
 
-        imageLoader.loadResource(
-            resource = OnDemandResource(
+        imageLoader.loadImage(
+            resource = OnDemandRemoteResource(
                 resourceName = "RPPAY-DECLINED-BY-RISK",
                 useCountryCode = false,
                 useLanguageCode = false
@@ -55,7 +55,7 @@ class MainFragment : Fragment() {
             }
         )
 
-        imageLoader.loadResource(
+        imageLoader.loadAnimation(
             resource = RemoteResource(url = "https://assets5.lottiefiles.com/datafiles/zc3XRzudyWE36ZBJr7PIkkqq0PFIrIBgp4ojqShI/newAnimation.json"),
             targetView = binding.lottieAnimationViewRemoteResourceLottie,
             onResourceLoaded = {
@@ -66,8 +66,8 @@ class MainFragment : Fragment() {
             }
         )
 
-        imageLoader.loadResource(
-            resource = OnDemandResource(
+        imageLoader.loadAnimation(
+            resource = OnDemandRemoteResource(
                 resourceName = "RPPAY-PAY-RDA-VALIDATING-RISK",
                 useCountryCode = false,
                 useLanguageCode = false

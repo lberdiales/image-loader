@@ -5,8 +5,7 @@ import java.security.MessageDigest
 
 data class RemoteResource(
     val url: String
-) : Resource() {
-
+) : Resource {
     override fun updateDiskCacheKey(messageDigest: MessageDigest) {
         messageDigest.update(toString().toByteArray(Key.CHARSET))
     }

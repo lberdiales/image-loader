@@ -11,12 +11,12 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.CustomViewTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
-import com.example.imageloader.models.OnDemandResource
+import com.example.imageloader.models.OnDemandRemoteResource
 import com.example.imageloader.models.RemoteResource
 
 class ImageLoaderImpl : ImageLoader {
 
-    override fun loadResource(
+    override fun loadImage(
         resource: RemoteResource,
         targetView: ImageView,
         placeholderDrawable: Drawable?,
@@ -53,7 +53,7 @@ class ImageLoaderImpl : ImageLoader {
             .into(targetView)
     }
 
-    override fun loadResource(
+    override fun loadAnimation(
         resource: RemoteResource,
         targetView: LottieAnimationView,
         placeholderDrawable: Drawable?,
@@ -106,8 +106,8 @@ class ImageLoaderImpl : ImageLoader {
             })
     }
 
-    override fun loadResource(
-        resource: OnDemandResource,
+    override fun loadImage(
+        resource: OnDemandRemoteResource,
         targetView: ImageView,
         placeholderDrawable: Drawable?,
         errorDrawable: Drawable?,
@@ -143,8 +143,8 @@ class ImageLoaderImpl : ImageLoader {
             .into(targetView)
     }
 
-    override fun loadResource(
-        resource: OnDemandResource,
+    override fun loadAnimation(
+        resource: OnDemandRemoteResource,
         targetView: LottieAnimationView,
         placeholderDrawable: Drawable?,
         errorDrawable: Drawable?,
