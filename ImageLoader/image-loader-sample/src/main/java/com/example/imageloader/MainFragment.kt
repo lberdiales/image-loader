@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.imageloader.databinding.FragmentMainBinding
-import com.example.imageloader.models.OnDemandRemoteResource
-import com.example.imageloader.models.RemoteResource
+import com.example.imageloader.imageloaderlib.ImageLoader
+import com.example.imageloader.imageloaderlib.ImageLoaderImpl
+import com.example.imageloader.imageloaderlib.models.OnDemandRemoteResource
+import com.example.imageloader.imageloaderlib.models.RemoteResource
 
 class MainFragment : Fragment() {
 

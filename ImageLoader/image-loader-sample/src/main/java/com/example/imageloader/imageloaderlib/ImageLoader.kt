@@ -1,21 +1,23 @@
-package com.example.imageloader
+package com.example.imageloader.imageloaderlib
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieComposition
-import com.example.imageloader.models.OnDemandRemoteResource
-import com.example.imageloader.models.RemoteResource
-import com.facebook.shimmer.Shimmer
-import com.facebook.shimmer.ShimmerDrawable
+import com.example.imageloader.R
+import com.example.imageloader.imageloaderlib.models.OnDemandRemoteResource
+import com.example.imageloader.imageloaderlib.models.RemoteResource
+import com.example.imageloader.imageloaderlib.skeletons.ShimmerUtils
 
 interface ImageLoader {
     fun loadImage(
         resource: RemoteResource,
         targetView: ImageView,
         placeholderDrawable: Drawable? = ShimmerUtils.shimmerDrawable(),
-        errorDrawable: Drawable? = ContextCompat.getDrawable(targetView.context, R.drawable.ic_broken_image_24dp),
+        errorDrawable: Drawable? = ContextCompat.getDrawable(targetView.context,
+            R.drawable.ic_broken_image_24dp
+        ),
         onResourceLoaded: ((Drawable?) -> Unit)? = null,
         onResourceLoadFailed: ((Exception?) -> Unit)? = null
     )
@@ -24,7 +26,9 @@ interface ImageLoader {
         resource: RemoteResource,
         targetView: LottieAnimationView,
         placeholderDrawable: Drawable? = ShimmerUtils.shimmerDrawable(),
-        errorDrawable: Drawable? = ContextCompat.getDrawable(targetView.context, R.drawable.ic_broken_image_24dp),
+        errorDrawable: Drawable? = ContextCompat.getDrawable(targetView.context,
+            R.drawable.ic_broken_image_24dp
+        ),
         onResourceLoaded: ((LottieComposition?) -> Unit)? = null,
         onResourceLoadFailed: ((Exception?) -> Unit)? = null
     )
@@ -33,7 +37,9 @@ interface ImageLoader {
         resource: OnDemandRemoteResource,
         targetView: ImageView,
         placeholderDrawable: Drawable? = ShimmerUtils.shimmerDrawable(),
-        errorDrawable: Drawable? = ContextCompat.getDrawable(targetView.context, R.drawable.ic_broken_image_24dp),
+        errorDrawable: Drawable? = ContextCompat.getDrawable(targetView.context,
+            R.drawable.ic_broken_image_24dp
+        ),
         onResourceLoaded: ((Drawable?) -> Unit)? = null,
         onResourceLoadFailed: ((Exception?) -> Unit)? = null
     )
@@ -42,33 +48,10 @@ interface ImageLoader {
         resource: OnDemandRemoteResource,
         targetView: LottieAnimationView,
         placeholderDrawable: Drawable? = ShimmerUtils.shimmerDrawable(),
-        errorDrawable: Drawable? = ContextCompat.getDrawable(targetView.context, R.drawable.ic_broken_image_24dp),
+        errorDrawable: Drawable? = ContextCompat.getDrawable(targetView.context,
+            R.drawable.ic_broken_image_24dp
+        ),
         onResourceLoaded: ((LottieComposition?) -> Unit)? = null,
         onResourceLoadFailed: ((Exception?) -> Unit)? = null
     )
-}
-
-object ShimmerUtils {
-
-    fun shimmerDrawable(
-        baseAlpha: Float = 1f,
-        highlightAlpha: Float = 0.9f,
-        widthRatio: Float = 1.6f,
-        duration: Long = 650L,
-        repeatDelay: Long = 100,
-        tilt: Float = 30f,
-    ): ShimmerDrawable {
-        val shimmer = Shimmer.AlphaHighlightBuilder()
-            .setBaseAlpha(baseAlpha)
-            .setWidthRatio(widthRatio)
-            .setHighlightAlpha(highlightAlpha)
-            .setDuration(duration)
-            .setRepeatDelay(repeatDelay)
-            .setTilt(tilt)
-            .setAutoStart(true)
-            .build()
-        val shimmerDrawable = ShimmerDrawable()
-        shimmerDrawable.setShimmer(shimmer)
-        return shimmerDrawable
-    }
 }

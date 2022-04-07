@@ -1,13 +1,13 @@
-package com.example.imageloader.loaders
+package com.example.imageloader.imageloaderlib.loaders
 
 import com.bumptech.glide.Priority
 import com.bumptech.glide.integration.okhttp3.OkHttpStreamFetcher
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.data.DataFetcher
 import com.bumptech.glide.load.model.GlideUrl
-import com.example.imageloader.models.OnDemandRemoteResource
-import com.example.imageloader.models.api.OnDemandResourceResponse
-import com.example.imageloader.providers.OnDemandRemoteResourceRequestBuilder
+import com.example.imageloader.imageloaderlib.models.OnDemandRemoteResource
+import com.example.imageloader.imageloaderlib.models.api.OnDemandResourceResponse
+import com.example.imageloader.imageloaderlib.providers.OnDemandRemoteResourceRequestBuilder
 import okhttp3.Call
 import java.io.InputStream
 

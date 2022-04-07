@@ -1,4 +1,4 @@
-package com.example.imageloader.models
+package com.example.imageloader.imageloaderlib.models
 
 import com.bumptech.glide.load.Key
 import java.security.MessageDigest

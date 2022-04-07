@@ -1,4 +1,4 @@
-package com.example.imageloader
+package com.example.imageloader.imageloaderlib
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
@@ -12,8 +12,8 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.CustomViewTarget
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
-import com.example.imageloader.models.OnDemandRemoteResource
-import com.example.imageloader.models.RemoteResource
+import com.example.imageloader.imageloaderlib.models.OnDemandRemoteResource
+import com.example.imageloader.imageloaderlib.models.RemoteResource
 
 class ImageLoaderImpl : ImageLoader {
 

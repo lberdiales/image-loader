@@ -1,8 +1,8 @@
-package com.example.imageloader.providers
+package com.example.imageloader.imageloaderlib.providers
 
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
-import com.example.imageloader.models.OnDemandRemoteResource
+import com.example.imageloader.imageloaderlib.models.OnDemandRemoteResource
 
 interface OnDemandRemoteResourceRequestBuilder {
     fun buildRequest(onDemandRemoteResource: OnDemandRemoteResource): GlideUrl

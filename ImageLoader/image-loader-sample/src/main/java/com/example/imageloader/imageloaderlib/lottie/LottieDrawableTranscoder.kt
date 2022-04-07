@@ -1,4 +1,4 @@
-package com.example.imageloader.lottie
+package com.example.imageloader.imageloaderlib.lottie
 
 import android.animation.ValueAnimator
 import com.airbnb.lottie.LottieComposition
