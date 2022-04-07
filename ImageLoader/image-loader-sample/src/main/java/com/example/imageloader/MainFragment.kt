@@ -7,22 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.airbnb.lottie.LottieDrawable.INFINITE
 import com.example.imageloader.databinding.FragmentMainBinding
 import com.example.imageloader.models.OnDemandResource
 import com.example.imageloader.models.RemoteResource
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class MainFragment : Fragment() {
 
     private val imageLoader: ImageLoader = ImageLoaderImpl()
 
     private var _binding: FragmentMainBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(

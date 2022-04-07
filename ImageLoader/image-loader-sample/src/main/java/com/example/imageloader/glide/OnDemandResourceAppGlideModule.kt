@@ -26,6 +26,7 @@ class OnDemandResourceAppGlideModule : AppGlideModule() {
 
     private val countryCodeProvider: CountryCodeProvider = CountryCodeProviderImpl()
     private val languageCodeProvider: LanguageCodeProvider = LanguageCodeProviderImpl()
+    // Esta instancia tiene que venir desde App, ¿Dagger?
     private val onDemandResourceRequestBuilder: OnDemandResourceRequestBuilder = OnDemandResourceRequestBuilderImpl(countryCodeProvider, languageCodeProvider)
 
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
@@ -39,6 +40,7 @@ class OnDemandResourceAppGlideModule : AppGlideModule() {
         return false
     }
 
+    // Esta instancia tiene que venir desde App, ¿Dagger?
     private fun buildOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().apply {
