@@ -13,7 +13,7 @@ import okhttp3.Response
 import okhttp3.ResponseBody
 import java.io.IOException
 
-class OnDemandResourceApiFetcher(
+class OnDemandRemoteResourceApiFetcher(
     private val onDemandRemoteResource: OnDemandRemoteResource,
     private val client: Call.Factory,
     private val onDemandRemoteResourceRequestBuilder: OnDemandRemoteResourceRequestBuilder
@@ -27,7 +27,7 @@ class OnDemandResourceApiFetcher(
 
     fun loadData(callback: DataFetcher.DataCallback<in GlideUrl>) {
         val request = onDemandRemoteResourceRequestBuilder.buildRequest(onDemandRemoteResource)
-        this@OnDemandResourceApiFetcher.callback = callback
+        this@OnDemandRemoteResourceApiFetcher.callback = callback
 
         call = client.newCall(request)
         call?.enqueue(this)

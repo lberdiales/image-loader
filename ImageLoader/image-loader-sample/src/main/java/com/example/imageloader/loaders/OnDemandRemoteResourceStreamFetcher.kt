@@ -17,13 +17,13 @@ import okhttp3.ResponseBody
 import java.io.IOException
 import java.io.InputStream
 
-class OnDemandResourceStreamFetcher(
+class OnDemandRemoteResourceStreamFetcher(
     private val onDemandRemoteResource: OnDemandRemoteResource,
     private val client: Call.Factory,
     private val onDemandRemoteResourceRequestBuilder: OnDemandRemoteResourceRequestBuilder
 ) : DataFetcher<InputStream>, Callback {
 
-    private var onDemandResourceApiFetcher: OnDemandResourceApiFetcher? = null
+    private var onDemandRemoteResourceApiFetcher: OnDemandRemoteResourceApiFetcher? = null
 
     private var responseBody: ResponseBody? = null
     private var callback: DataFetcher.DataCallback<in InputStream>? = null
@@ -34,15 +34,15 @@ class OnDemandResourceStreamFetcher(
     private var call: Call? = null
 
     override fun loadData(priority: Priority, callback: DataFetcher.DataCallback<in InputStream>) {
-        onDemandResourceApiFetcher = OnDemandResourceApiFetcher(onDemandRemoteResource, client, onDemandRemoteResourceRequestBuilder)
-        onDemandResourceApiFetcher?.loadData(object : DataFetcher.DataCallback<GlideUrl> {
+        onDemandRemoteResourceApiFetcher = OnDemandRemoteResourceApiFetcher(onDemandRemoteResource, client, onDemandRemoteResourceRequestBuilder)
+        onDemandRemoteResourceApiFetcher?.loadData(object : DataFetcher.DataCallback<GlideUrl> {
             override fun onDataReady(data: GlideUrl?) {
                 val requestBuilder = Request.Builder().get().url(data!!.toStringUrl())
                 val request = requestBuilder.build()
-                this@OnDemandResourceStreamFetcher.callback = callback
+                this@OnDemandRemoteResourceStreamFetcher.callback = callback
 
                 call = client.newCall(request)
-                call?.enqueue(this@OnDemandResourceStreamFetcher)
+                call?.enqueue(this@OnDemandRemoteResourceStreamFetcher)
             }
 
             override fun onLoadFailed(e: Exception) {
@@ -66,7 +66,7 @@ class OnDemandResourceStreamFetcher(
     }
 
     override fun cleanup() {
-        onDemandResourceApiFetcher?.cleanup()
+        onDemandRemoteResourceApiFetcher?.cleanup()
         stream?.close()
         stream = null
 
@@ -77,7 +77,7 @@ class OnDemandResourceStreamFetcher(
     }
 
     override fun cancel() {
-        onDemandResourceApiFetcher?.cancel()
+        onDemandRemoteResourceApiFetcher?.cancel()
 
         call?.cancel()
     }

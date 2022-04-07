@@ -10,7 +10,7 @@ import okhttp3.Call
 import okhttp3.OkHttpClient
 import java.io.InputStream
 
-class OnDemandResourceModelLoader(
+class OnDemandRemoteResourceModelLoader(
     private val client: Call.Factory,
     private val onDemandRemoteResourceRequestBuilder: OnDemandRemoteResourceRequestBuilder
 ) : ModelLoader<OnDemandRemoteResource, InputStream> {
@@ -23,7 +23,7 @@ class OnDemandResourceModelLoader(
     ): ModelLoader.LoadData<InputStream> {
         return ModelLoader.LoadData(
             model,
-            OnDemandResourceStreamFetcher(
+            OnDemandRemoteResourceStreamFetcher(
                 onDemandRemoteResource = model,
                 client = client,
                 onDemandRemoteResourceRequestBuilder = onDemandRemoteResourceRequestBuilder
@@ -41,7 +41,7 @@ class OnDemandResourceModelLoader(
     ) : ModelLoaderFactory<OnDemandRemoteResource, InputStream> {
 
         override fun build(multiFactory: MultiModelLoaderFactory): ModelLoader<OnDemandRemoteResource, InputStream> {
-            return OnDemandResourceModelLoader(client, onDemandRemoteResourceRequestBuilder)
+            return OnDemandRemoteResourceModelLoader(client, onDemandRemoteResourceRequestBuilder)
         }
 
         override fun teardown() {
