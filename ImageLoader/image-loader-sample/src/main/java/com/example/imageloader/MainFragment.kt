@@ -1,6 +1,8 @@
 package com.example.imageloader
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,7 @@ import com.example.imageloader.imageloaderlib.ImageLoader
 import com.example.imageloader.imageloaderlib.ImageLoaderImpl
 import com.example.imageloader.imageloaderlib.models.OnDemandRemoteResource
 import com.example.imageloader.imageloaderlib.models.RemoteResource
+import com.facebook.shimmer.Shimmer
 
 class MainFragment : Fragment() {
 
@@ -84,6 +87,17 @@ class MainFragment : Fragment() {
         )
 
         configureImageButtonTogglePlayStop(PlayingState.PLAYING)
+
+
+        val shimmer = Shimmer.ColorHighlightBuilder()
+            .setBaseColor(ContextCompat.getColor(requireContext(), android.R.color.darker_gray))
+            //.setHighlightColor(ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark))
+            .build()
+        binding.shimmerFrameLayout.setShimmer(shimmer)
+        binding.shimmerFrameLayout.startShimmer()
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.shimmerFrameLayout.setShimmer(null)
+        }, 2000)
     }
 
     private fun configureImageButtonTogglePlayStop(playingState: PlayingState) {

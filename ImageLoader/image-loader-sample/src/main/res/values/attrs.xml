@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="pay_mod_design_system_notification">
+        <attr name="pay_mod_design_system_notification_label" format="reference" />
+        <attr name="pay_mod_design_system_notification_bottom_label" format="reference" />
+        <attr name="pay_mod_design_system_notification_start_icon" format="reference" />
+        <attr name="pay_mod_design_system_notification_start_icon_enabled" format="boolean" />
+        <attr name="pay_mod_design_system_notification_end_icon" format="reference" />
+        <attr name="pay_mod_design_system_notification_end_icon_enabled" format="boolean" />
+        <attr name="pay_mod_design_system_notification_auto_dismiss_seconds" format="integer" />
+        <attr name="pay_mod_design_system_notification_type" format="enum">
+            <enum name="neutral" value="0" />
+            <enum name="alert" value="1" />
+            <enum name="error" value="2" />
+        </attr>
+        <attr name="pay_mod_design_system_notification_text_number" format="enum">
+            <enum name="one" value="0" />
+            <enum name="two" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>

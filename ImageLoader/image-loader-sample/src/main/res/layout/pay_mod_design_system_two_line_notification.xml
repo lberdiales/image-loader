@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <View
+        android:id="@+id/space_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pay_mod_design_system_notification_two_line_height"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageView_startIcon"
+        android:layout_width="@dimen/pay_mod_design_system_notification_start_icon_size"
+        android:layout_height="@dimen/pay_mod_design_system_notification_start_icon_size"
+        android:layout_marginStart="@dimen/pay_mod_design_system_notification_start_icon_margin"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_play_24dp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/pay_mod_design_system_notification_text_start_margin"
+        android:layout_marginTop="@dimen/pay_mod_design_system_notification_text_top_margin"
+        android:layout_marginEnd="@dimen/pay_mod_design_system_notification_text_end_margin"
+        android:includeFontPadding="false"
+        android:textColor="@color/pay_mod_design_system_color_grays_onWhite_contentA"
+        app:layout_constraintBottom_toTopOf="@+id/textView_bottomLabel"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_endIcon"
+        app:layout_constraintStart_toEndOf="@+id/imageView_startIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_goneMarginBottom="@dimen/pay_mod_design_system_notification_text_bottom_margin"
+        app:layout_goneMarginEnd="@dimen/pay_mod_design_system_notification_text_gone_end_margin"
+        app:layout_goneMarginStart="@dimen/pay_mod_design_system_notification_text_gone_start_margin"
+        tools:text="Label" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView_bottomLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/pay_mod_design_system_notification_text_start_margin"
+        android:layout_marginEnd="@dimen/pay_mod_design_system_notification_text_end_margin"
+        android:layout_marginBottom="@dimen/pay_mod_design_system_notification_text_bottom_margin"
+        android:includeFontPadding="false"
+        android:textColor="@color/pay_mod_design_system_color_grays_onWhite_contentB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_endIcon"
+        app:layout_constraintStart_toEndOf="@+id/imageView_startIcon"
+        app:layout_constraintTop_toBottomOf="@+id/textView_label"
+        app:layout_goneMarginEnd="@dimen/pay_mod_design_system_notification_text_gone_end_margin"
+        app:layout_goneMarginStart="@dimen/pay_mod_design_system_notification_text_gone_start_margin"
+        app:layout_goneMarginTop="@dimen/pay_mod_design_system_notification_text_top_margin"
+        tools:text="Label" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageView_endIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="@dimen/pay_mod_design_system_notification_end_icon_margin"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_pause_24dp" />
+
+</merge>

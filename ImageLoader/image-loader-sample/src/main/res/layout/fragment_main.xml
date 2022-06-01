@@ -1,104 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shimmerFrameLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainFragment">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView_image_views"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="#33000000"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="ImageView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainFragment">
 
-    <ImageView
-        android:id="@+id/imageView_remote_resource_image"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="16dp"
-        android:background="#33000000"
-        app:layout_constraintDimensionRatio="W,1:1"
-        app:layout_constraintEnd_toStartOf="@id/imageView_on_demand_resource_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_image_views"
-        tools:ignore="ContentDescription" />
+        <TextView
+            android:id="@+id/textView_image_views"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="#33000000"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="ImageView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
-    <ImageView
-        android:id="@+id/imageView_on_demand_resource_image"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:background="#33000000"
-        app:layout_constraintBottom_toBottomOf="@id/imageView_remote_resource_image"
-        app:layout_constraintDimensionRatio="W,1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imageView_remote_resource_image"
-        app:layout_constraintTop_toTopOf="@id/imageView_remote_resource_image"
-        tools:ignore="ContentDescription" />
+        <ImageView
+            android:id="@+id/imageView_remote_resource_image"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="16dp"
+            android:background="#33000000"
+            app:layout_constraintDimensionRatio="W,1:1"
+            app:layout_constraintEnd_toStartOf="@id/imageView_on_demand_resource_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_image_views"
+            tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/textView_lottie_animation_views"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="#33000000"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="LottieAnimationView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView_remote_resource_image"
-        tools:ignore="HardcodedText" />
+        <ImageView
+            android:id="@+id/imageView_on_demand_resource_image"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:background="#33000000"
+            app:layout_constraintBottom_toBottomOf="@id/imageView_remote_resource_image"
+            app:layout_constraintDimensionRatio="W,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageView_remote_resource_image"
+            app:layout_constraintTop_toTopOf="@id/imageView_remote_resource_image"
+            tools:ignore="ContentDescription" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieAnimationView_remote_resource_lottie"
-        android:layout_width="0dp"
-        android:layout_height="160dp"
-        android:layout_marginTop="16dp"
-        android:background="#33000000"
-        app:layout_constraintDimensionRatio="W,1:1"
-        app:layout_constraintEnd_toStartOf="@id/lottieAnimationView_on_demand_resource_lottie"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_lottie_animation_views"
-        app:lottie_autoPlay="true"
-        app:lottie_repeatCount="-1"
-        tools:ignore="ContentDescription" />
+        <TextView
+            android:id="@+id/textView_lottie_animation_views"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="#33000000"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="LottieAnimationView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView_remote_resource_image"
+            tools:ignore="HardcodedText" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieAnimationView_on_demand_resource_lottie"
-        android:layout_width="0dp"
-        android:layout_height="160dp"
-        android:background="#33000000"
-        app:layout_constraintBottom_toBottomOf="@id/lottieAnimationView_remote_resource_lottie"
-        app:layout_constraintDimensionRatio="W,1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/lottieAnimationView_remote_resource_lottie"
-        app:layout_constraintTop_toTopOf="@id/lottieAnimationView_remote_resource_lottie"
-        app:lottie_autoPlay="true"
-        app:lottie_repeatCount="-1"
-        tools:ignore="ContentDescription" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView_remote_resource_lottie"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="16dp"
+            android:background="#33000000"
+            app:layout_constraintDimensionRatio="W,1:1"
+            app:layout_constraintEnd_toStartOf="@id/lottieAnimationView_on_demand_resource_lottie"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_lottie_animation_views"
+            app:lottie_autoPlay="true"
+            app:lottie_repeatCount="-1"
+            tools:ignore="ContentDescription" />
 
-    <ImageButton
-        android:id="@+id/imageButton_toggle_play_stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@id/lottieAnimationView_on_demand_resource_lottie"
-        app:layout_constraintStart_toStartOf="@id/lottieAnimationView_remote_resource_lottie"
-        app:layout_constraintTop_toBottomOf="@id/lottieAnimationView_remote_resource_lottie"
-        app:srcCompat="@drawable/ic_play_24dp"
-        tools:ignore="ContentDescription" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView_on_demand_resource_lottie"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:background="#33000000"
+            app:layout_constraintBottom_toBottomOf="@id/lottieAnimationView_remote_resource_lottie"
+            app:layout_constraintDimensionRatio="W,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/lottieAnimationView_remote_resource_lottie"
+            app:layout_constraintTop_toTopOf="@id/lottieAnimationView_remote_resource_lottie"
+            app:lottie_autoPlay="true"
+            app:lottie_repeatCount="-1"
+            tools:ignore="ContentDescription" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton
+            android:id="@+id/imageButton_toggle_play_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@id/lottieAnimationView_on_demand_resource_lottie"
+            app:layout_constraintStart_toStartOf="@id/lottieAnimationView_remote_resource_lottie"
+            app:layout_constraintTop_toBottomOf="@id/lottieAnimationView_remote_resource_lottie"
+            app:srcCompat="@drawable/ic_play_24dp"
+            tools:ignore="ContentDescription" />
+
+        <com.example.imageloader.Notification
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageButton_toggle_play_stop"
+            app:pay_mod_design_system_notification_label="@string/app_name"
+            app:pay_mod_design_system_notification_start_icon_enabled="true"
+            app:pay_mod_design_system_notification_type="alert" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.facebook.shimmer.ShimmerFrameLayout>

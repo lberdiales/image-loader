@@ -1,3 +1,19 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="pay_mod_design_system_notification_one_line_height">56dp</dimen>
+    <dimen name="pay_mod_design_system_notification_two_line_height">68dp</dimen>
+    <dimen name="pay_mod_design_system_notification_start_icon_size">20dp</dimen>
+    <dimen name="pay_mod_design_system_notification_start_icon_margin">16dp</dimen>
+    <dimen name="pay_mod_design_system_notification_text_start_margin">8dp</dimen>
+    <dimen name="pay_mod_design_system_notification_end_icon_margin">16dp</dimen>
+    <dimen name="pay_mod_design_system_notification_text_end_margin">10dp</dimen>
+    <dimen name="pay_mod_design_system_notification_text_top_margin">16dp</dimen>
+    <dimen name="pay_mod_design_system_notification_text_bottom_margin">16dp</dimen>
+    <dimen name="pay_mod_design_system_notification_text_gone_start_margin">16dp</dimen>
+    <dimen name="pay_mod_design_system_notification_text_gone_end_margin">16dp</dimen>
+    <dimen name="pay_mod_design_system_notification_height">52dp</dimen>
+    <dimen name="pay_mod_design_system_notification_height_large">68dp</dimen>
+    <dimen name="pay_mod_design_system_notification_text_one_line_vertical_margin">19dp</dimen>
+    <dimen name="pay_mod_design_system_notification_text_two_line_vertical_margin">16dp</dimen>
+
+    <dimen name="pay_mod_design_system_spacing_large">16dp</dimen>
 </resources>

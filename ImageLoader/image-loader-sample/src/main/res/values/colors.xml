@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="pay_mod_design_system_color_grays_onWhite_contentB">#6a696e</color>
+    <color name="pay_mod_design_system_color_grays_onWhite_contentA">#2e2c36</color>
+    <color name="pay_mod_design_system_color_status_alert">#ff7d00</color>
+    <color name="pay_mod_design_system_color_status_error">#ff2525</color>
+    <color name="pay_mod_design_system_color_background_elevatedOnWhite">#ffffff</color>
+    <color name="pay_mod_design_system_color_pastel_onWhite_paleYellow">#fff0ca</color>
+    <color name="pay_mod_design_system_color_pastel_onWhite_paleRed">#ffdfdf</color>
 </resources>
